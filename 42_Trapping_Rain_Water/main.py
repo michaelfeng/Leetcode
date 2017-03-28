@@ -21,7 +21,6 @@ class Solution(object):
         # 找到最大值
         max_index = height.index(max(height))
 
-
         # 初始化左边当前最大值
         current_max = 0;
 
@@ -40,7 +39,7 @@ class Solution(object):
         # 初始化左边当前最大值
         current_max = height[height_len - 1];
                 
-                # 爬右楼
+        # 爬右楼
         for i in range(max_index, height_len)[::-1]:
             if height[i] > current_max:
                 current_max = height[i]
@@ -54,4 +53,8 @@ class Solution(object):
 if __name__ == '__main__':
     a = [0,1,0,2,1,0,1,3,2,1,2,1]
     # Exptected 6
+    print Solution().trap(a)
+
+    a = []
+    # Exptected 0
     print Solution().trap(a)
