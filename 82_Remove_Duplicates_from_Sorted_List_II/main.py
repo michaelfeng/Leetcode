@@ -22,16 +22,16 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        if head is None or head.next is None:
+        if not head or not head.next:
             return head
 
-        pre = ListNode(-1)
-        tail = pre
+        dummy = ListNode(-1)
+        tail = dummy
         q = head
-        while q is not None:
+        while q:
             n = 0
             p = q
-            while p is not None and p.val == q.val:
+            while p and p.val == q.val:
                 n += 1
                 p = p.next
             if n == 1:
@@ -40,7 +40,7 @@ class Solution(object):
             q = p
 
         tail.next = None
-        return pre.next
+        return dummy.next
                             
 
 if __name__ == '__main__':
