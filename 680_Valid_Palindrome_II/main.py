@@ -5,7 +5,6 @@ class Solution(object):
         :rtype: bool
         """
         i, j = 0, len(s) - 1
-        count = 0
         while i < j:
             if s[i] != s[j]:
                 return self.check(s[i:j]) or self.check(s[i+1:j+1])
