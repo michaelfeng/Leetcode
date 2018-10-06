@@ -1,20 +1,29 @@
-class Solution(object):
+class Solution:
+    """
+    @param s: input string
+    @return: the longest palindromic substring
+    """
     def longestPalindrome(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
-        if not s or len(s) == 0: return s
-        l = len(s)
-        dp = [[False] * l for i in range(l)]
-        #print l
+        # write your code here
+        if not s or len(s) < 2: return s
         ans = ""
         maxLen = 0
-        for j in range(0, l):
-            for i in range(0, j+1):
-                dp[i][j] = (s[i] == s[j]) and ((j - i <= 2) or dp[i+1][j-1])
-                #print i, j, s[i],s[j],j - i
-                if dp[i][j] and j - i + 1 > maxLen:
-                    maxLen = j - i + 1
-                    ans = s[i:j+1]
+        for i in xrange(len(s)):
+            s1, l1 = self.helper(s, i, i)
+            s2, l2 = self.helper(s, i, i+1)
+            if l1 >= l2 and l1 > maxLen:
+                maxLen = l1
+                ans = s1
+            if l1 <= l2 and l2 > maxLen:
+                maxLen = l2
+                ans = s2
         return ans
+    
+    def helper(self, s, left, right):
+        while left >= 0 and left < len(s) and right >=0 and right < len(s) and s[left] == s[right]:
+            left, right = left-1, right+1
+        return s[left+1:right], right-left-1
+        
+        
+            
+        
